@@ -11,14 +11,14 @@
    <center>
       <AnchorPane prefHeight="550.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="43.0" layoutY="72.0" prefHeight="26.0" prefWidth="319.0" />
+            <TextField fx:id="nameTextField" layoutX="43.0" layoutY="72.0" prefHeight="26.0" prefWidth="319.0" />
             <Label layoutX="155.0" layoutY="48.0" text="Nombre del Lugar" />
             <Label layoutX="132.0" layoutY="119.0" text="Pais en el que se Encuentra" />
-            <TextField layoutX="43.0" layoutY="153.0" prefHeight="26.0" prefWidth="319.0" />
+            <TextField fx:id="countryTextField" layoutX="43.0" layoutY="153.0" prefHeight="26.0" prefWidth="319.0" />
             <TextField fx:id="imagePathTextField" layoutX="44.0" layoutY="217.0" prefHeight="26.0" prefWidth="319.0" />
             <Label layoutX="115.0" layoutY="187.0" text="Ingresa la ubicacion de la imagen" />
             <Button layoutX="169.0" layoutY="260.0" mnemonicParsing="false" onAction="#showImage" text="Visualizar" />
-            <Button layoutX="174.0" layoutY="507.0" mnemonicParsing="false" text="Aceptar" />
+            <Button layoutX="174.0" layoutY="507.0" mnemonicParsing="false" onAction="#ingresarLugar" text="Aceptar" />
             <ImageView fx:id="imageContainer" fitHeight="200.0" fitWidth="300.0" layoutX="54.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>

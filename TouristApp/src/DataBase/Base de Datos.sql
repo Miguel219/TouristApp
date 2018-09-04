@@ -1,40 +1,40 @@
 USE TouristAppDataBase;
 CREATE TABLE Usuarios (
-	userId int NOT NULL,
-    userName char(20) default NULL,
-    userPhone int(8) default NULL,
-    email char(20) default NULL,
-    accountType Int(1) default NULL,
-    birthDate DateTime(6) default NULL,
+	userId int NOT NULL AUTO_INCREMENT,
+    userName char(20) NOT NULL,
+    userPhone int(8) NOT NULL,
+    email char(20) NOT NULL,
+    accountType Int(1) NOT NULL,
+    birthDate DateTime(6) NOT NULL,
     PRIMARY KEY (userId)
 );
 CREATE TABLE Lugares (
-	placeId int NOT NULL,
-    placeName char(20) default NULL,
-    placeCountry char(20) default NULL,
-    placeImage longblob default NULL,
+	placeId int NOT NULL AUTO_INCREMENT,
+    placeName char(20) NOT NULL,
+    placeCountry char(20) NOT NULL,
+    placeImage longblob NOT NULL,
     PRIMARY KEY (placeId)
 );
 CREATE TABLE Tags (
-	tagId int NOT NULL,
-    tag char(10) default NULL,
+	tagId int NOT NULL AUTO_INCREMENT,
+    tag char(10) NOT NULL,
     PRIMARY KEY (tagId)
 );
 CREATE TABLE Comentarios (
-	commentId int NOT NULL,
-    comment char(200) default NULL,
-    commentDate DateTime(6) default NULL,
+	commentId int NOT NULL AUTO_INCREMENT,
+    comment char(200) NOT NULL,
+    commentDate DateTime(6) NOT NULL,
     PRIMARY KEY (commentId)
 );
 CREATE TABLE Calificaciones (
-	qualificationId INT NOT NULL,
-    qualification Int(1) default NULL,
-    qualificationDate DateTime(6) default NULL,
+	qualificationId INT NOT NULL AUTO_INCREMENT,
+    qualification Int(1) NOT NULL,
+    qualificationDate DateTime(6) NOT NULL,
     PRIMARY KEY (qualificationId)
 );
 
 CREATE TABLE Relacion(
-    relationshipId INT NOT NULL,
+    relationshipId INT NOT NULL AUTO_INCREMENT,
     userId INT,
     placeId INT,
     commentId INT,
@@ -47,7 +47,7 @@ CREATE TABLE Relacion(
 );
 
 CREATE TABLE RelacionTags(
-    relationshipTagsId INT NOT NULL,
+    relationshipTagsId INT NOT NULL AUTO_INCREMENT,
     placeId INT,
     tagId INT,
     PRIMARY KEY(relationshipTagsId),
