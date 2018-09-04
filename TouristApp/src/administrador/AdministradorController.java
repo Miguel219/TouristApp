@@ -19,7 +19,10 @@ import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 
+import DataBase.Conexion;
+
 public class AdministradorController {
+	private  Conexion miConexion;
 	
 	@FXML	
 	private ImageView imageContainer;
@@ -33,4 +36,9 @@ public class AdministradorController {
 	    image = new Image(new FileInputStream(imagePath));
 	    imageContainer.setImage(image);
 	  }
+	
+	public void ingresarLugar() {
+		miConexion = new Conexion();
+		
+	}
 }
