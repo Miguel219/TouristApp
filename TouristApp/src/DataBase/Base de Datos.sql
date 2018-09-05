@@ -46,11 +46,20 @@ CREATE TABLE Relacion(
     FOREIGN KEY (qualificationId) REFERENCES Calificaciones(qualificationId)
 );
 
-CREATE TABLE RelacionTags(
-    relationshipTagsId INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE RelacionTagsLugares(
+    relationshipTagsPlacesId INT NOT NULL AUTO_INCREMENT,
     placeId INT,
     tagId INT,
-    PRIMARY KEY(relationshipTagsId),
+    PRIMARY KEY(relationshipTagsPlacesId),
     FOREIGN KEY (placeId) REFERENCES Lugares(placeId),
+    FOREIGN KEY (tagId) REFERENCES Tags(tagId)
+);
+
+CREATE TABLE RelacionTagsUsuarios(
+    relationshipTagsUsersId INT NOT NULL AUTO_INCREMENT,
+    userId INT,
+    tagId INT,
+    PRIMARY KEY(relationshipTagsUsersId),
+    FOREIGN KEY (userId) REFERENCES Usuarios(userId),
     FOREIGN KEY (tagId) REFERENCES Tags(tagId)
 );

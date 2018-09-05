@@ -63,7 +63,12 @@ public class AdministradorController {
 				miLugar.ingresarLugar(name,country,imagePath);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText("Error de conexion");
+				alert.setContentText("Error al guardar en base de datos");
+
+				alert.showAndWait();
 			}
 		}else if (verificado == false) {
 			Alert alert = new Alert(AlertType.INFORMATION);
