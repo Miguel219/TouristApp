@@ -1,6 +1,6 @@
 package LoginIn;
 
-public class login {
+public class signup {
 	private int userid;
 	private String username;
 	private int phone;
@@ -8,7 +8,7 @@ public class login {
 	private int acct;
 	private String birthdate;
 	
-	public login() {
+	public signup() {
 		userid = 0;
 		username = "";
 		phone = 0;

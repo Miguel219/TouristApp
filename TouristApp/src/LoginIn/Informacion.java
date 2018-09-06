@@ -1,10 +1,10 @@
 package LoginIn;
 
 public class Informacion {
-	private login informacion;
+	private signup informacion;
 	
 	public Informacion() {
-		informacion = new login();
+		informacion = new signup();
 	}
 	
 	public void llenarInformacion(int num, int userid, String username, int phone, String email, int accounttype, String birthdate) {
