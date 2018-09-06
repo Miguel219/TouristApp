@@ -28,7 +28,15 @@ public class Login {
 	    	Statement statement = con.createStatement();
 	    	String sql = ("SELECT user, pass FROM Usuarios");
 	    	ResultSet rs = statement.executeQuery(sql);
-	    	
+	    	while(rs.next()) {
+	    		String us = rs.getString("userName");
+	    		if (us == user) {
+	    			String pas = rs.getString("userPassword");
+	    			if(pass == pas) {
+	    				
+	    			}
+	    		}
+	    	}
 	    	
 	    }
 
