@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
+	<!-- TODO Add Nodes -->
+	<children>
+	  <AppBar prefHeight="54.0" prefWidth="335.0" style="-fx-background-color: limegreen;" titleText="Login" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TextField floatText="Username or Email" layoutX="26.0" layoutY="76.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="79.0" />
+      <TextField floatText="Password" layoutX="25.0" layoutY="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0" />
+      <Button layoutX="25.0" layoutY="206.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Login" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="221.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="161.0" layoutY="266.0" text="or" AnchorPane.topAnchor="278.0" />
+      <Button alignment="CENTER" layoutX="140.0" layoutY="300.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Sign in" textAlignment="CENTER" AnchorPane.topAnchor="321.0" onAction="Login()" />
+	</children>
+</AnchorPane>
+
