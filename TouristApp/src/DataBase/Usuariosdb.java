@@ -8,6 +8,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
@@ -31,8 +32,7 @@ public class Usuariosdb {
 
 		java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
 		
-		//Guardar los datos
-		Statement statement = con.createStatement();
+		//Guardar los datoss
 		PreparedStatement pStatement = con.prepareStatement("INSERT INTO USUARIOS (userName, userPassword, userPhone, email, accountType, birthDate)"+"values(?,?,?,?,?,?)");
 		pStatement.setString(1, name);
 		pStatement.setString(2, password);
@@ -43,4 +43,15 @@ public class Usuariosdb {
 		pStatement.executeUpdate();
 	}
 
+	public int IniciarSesion(String name,String password) throws Exception {
+		int accountType = 0;
+		Connection con = miConexion.getConexion();		
+		//Guardar los datos
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = "+name+" AND userPassword = "+password+"");
+		ResultSet result = pStatement.executeQuery("");
+		if (result.first()) {
+			accountType = result.getInt("accountType");
+		}
+		return accountType;
+	}
 }

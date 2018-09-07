@@ -11,9 +11,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Administrador.fxml"));;
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/LoginIn/Login.fxml"));;
 			Scene scene = new Scene(root,400,550);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setTitle("TouristApp");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
