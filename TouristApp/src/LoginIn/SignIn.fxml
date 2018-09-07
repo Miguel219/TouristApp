@@ -5,33 +5,28 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="587.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginIn.SignInController">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginIn.SignInController">
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="640.0" prefWidth="475.0">
-               <children>
-                  <Label layoutX="190.0" layoutY="238.0" text="Ingresa Tu Email" />
-                  <TextField fx:id="nameTextField" layoutX="130.0" layoutY="64.0" prefHeight="26.0" prefWidth="214.0" />
-                  <Label layoutX="175.0" layoutY="100.0" text="Ingresa una contraseña" />
-                  <TextField fx:id="phoneTextField" layoutX="129.0" layoutY="198.0" prefHeight="26.0" prefWidth="214.0" />
-                  <PasswordField fx:id="passwordTextField" layoutX="127.0" layoutY="129.0" prefHeight="26.0" prefWidth="214.0" />
-                  <Label layoutX="183.0" layoutY="36.0" text="Ingresa Tu nombre" />
-                  <Label layoutX="152.0" layoutY="169.0" text="Ingresa Tu numero de telefeno" />
-                  <TextField fx:id="emailTextField" layoutX="126.0" layoutY="266.0" prefHeight="26.0" prefWidth="214.0" />
-                  <Label layoutX="168.0" layoutY="311.0" text="Ingresa Tu Tipo de Cuenta" />
-                  <ComboBox fx:id="tipeComboBox" layoutX="159.0" layoutY="340.0" prefWidth="150.0" />
-                  <DatePicker fx:id="birthDay" layoutX="147.0" layoutY="408.0" />
-                  <Label layoutX="132.0" layoutY="379.0" text="Ingresa Tu Tipo Fecha de Cumpleaños" />
-                  <Button layoutX="195.0" layoutY="457.0" mnemonicParsing="false" onAction="#crearCuenta" text="Crear Cuenta" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="151.0" layoutY="238.0" text="Ingresa Tu Email" />
+            <TextField fx:id="nameTextField" layoutX="93.0" layoutY="65.0" prefHeight="26.0" prefWidth="214.0" />
+            <Label layoutX="138.0" layoutY="100.0" text="Ingresa una contraseña" />
+            <TextField fx:id="phoneTextField" layoutX="92.0" layoutY="198.0" prefHeight="26.0" prefWidth="214.0" />
+            <PasswordField fx:id="passwordTextField" layoutX="92.0" layoutY="131.0" prefHeight="26.0" prefWidth="214.0" />
+            <Label layoutX="145.0" layoutY="35.0" text="Ingresa Tu nombre" />
+            <Label layoutX="113.0" layoutY="169.0" text="Ingresa Tu numero de telefeno" />
+            <TextField fx:id="emailTextField" layoutX="93.0" layoutY="262.0" prefHeight="26.0" prefWidth="214.0" />
+            <Label layoutX="125.0" layoutY="312.0" text="Ingresa Tu Tipo de Cuenta" />
+            <ComboBox fx:id="tipeComboBox" layoutX="118.0" layoutY="341.0" prefHeight="26.0" prefWidth="162.0" />
+            <DatePicker fx:id="birthDay" layoutX="106.0" layoutY="424.0" />
+            <Label layoutX="93.0" layoutY="390.0" text="Ingresa Tu Tipo Fecha de Cumpleaños" />
+            <Button layoutX="151.0" layoutY="473.0" mnemonicParsing="false" onAction="#crearCuenta" text="Crear Cuenta" />
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>

@@ -12,7 +12,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("SignIn.fxml"));
-			Scene scene = new Scene(root,400,550.4);
+			Scene scene = new Scene(root,400,550);
 			primaryStage.setTitle("TouristApp Login");
 			primaryStage.setScene(scene);
 			primaryStage.show();
