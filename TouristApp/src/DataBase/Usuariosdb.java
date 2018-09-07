@@ -47,11 +47,21 @@ public class Usuariosdb {
 		int accountType = 0;
 		Connection con = miConexion.getConexion();		
 		//Guardar los datos
-		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = "+name+" AND userPassword = "+password+"");
-		ResultSet result = pStatement.executeQuery("");
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+name+"' AND userPassword = '"+password+"'");
+		ResultSet result = pStatement.executeQuery();
 		if (result.first()) {
 			accountType = result.getInt("accountType");
 		}
 		return accountType;
+	}
+	
+	public void editarUsuario(String nombre, Integer numero, String correoe) throws SQLException{
+		Connection con = miConexion.getConexion();
+				
+		//Guardar los datos
+		PreparedStatement pStatement = con.prepareStatement("INSERT INTO USUARIOS (userName, userPhone, email)"+"values(?,?,?)");
+		pStatement.setString(1, nombre);
+		pStatement.setInt(2, numero);
+		pStatement.setString(3, correoe);
 	}
 }
