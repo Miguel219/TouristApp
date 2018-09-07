@@ -33,7 +33,7 @@ public class Login {
 	    		if (us == user) {
 	    			String pas = rs.getString("userPassword");
 	    			if(pass == pas) {
-	    				
+	    				System.out.println("Login success");
 	    			}
 	    		}
 	    	}
