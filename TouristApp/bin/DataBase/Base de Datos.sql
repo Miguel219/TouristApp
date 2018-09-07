@@ -2,6 +2,7 @@ USE TouristAppDataBase;
 CREATE TABLE Usuarios (
 	userId int NOT NULL AUTO_INCREMENT,
     userName char(20) NOT NULL,
+    userPassword char(20) NOT NULL,
     userPhone int(8) NOT NULL,
     email char(20) NOT NULL,
     accountType Int(1) NOT NULL,
