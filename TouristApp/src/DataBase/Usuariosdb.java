@@ -26,42 +26,48 @@ public class Usuariosdb {
 		// TODO Auto-generated constructor stub
 		miConexion = new Conexion();
 	}
-	public void crearUsuario(String name, String password, String email, int phone, int tipe, Date birth) throws Exception {
+	public boolean crearUsuario(String name, String password, String email, int phone, int tipe, Date birth) throws Exception {
 		Connection con = miConexion.getConexion();
 		//convertir fecha
 
 		java.sql.Date sqlBirth = new java.sql.Date(birth.getTime());
 		
-		//Guardar los datoss
-		PreparedStatement pStatement = con.prepareStatement("INSERT INTO USUARIOS (userName, userPassword, userPhone, email, accountType, birthDate)"+"values(?,?,?,?,?,?)");
-		pStatement.setString(1, name);
-		pStatement.setString(2, password);
-		pStatement.setInt(3, phone);
-		pStatement.setString(4, email);
-		pStatement.setInt(5, tipe);
-		pStatement.setDate(6, sqlBirth);
-		pStatement.executeUpdate();
+		//Buscar el usuario los datos
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+name+"'");
+			ResultSet result = pStatement.executeQuery();
+		if (!result.first()) {
+			//Guardar los datoss
+			pStatement = con.prepareStatement("INSERT INTO USUARIOS (userName, userPassword, userPhone, email, accountType, birthDate)"+"values(?,?,?,?,?,?)");
+			pStatement.setString(1, name);
+			pStatement.setString(2, password);
+			pStatement.setInt(3, phone);
+			pStatement.setString(4, email);
+			pStatement.setInt(5, tipe);
+			pStatement.setDate(6, sqlBirth);
+			pStatement.executeUpdate();
+			return true;
+		}
+		return false;
 	}
 
-	public int IniciarSesion(String name,String password) throws Exception {
-		int accountType = 0;
+	public ResultSet IniciarSesion(String name,String password) throws Exception {
 		Connection con = miConexion.getConexion();		
-		//Guardar los datos
+		//Buscar el usuario los datos
 		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+name+"' AND userPassword = '"+password+"'");
 		ResultSet result = pStatement.executeQuery();
-		if (result.first()) {
-			accountType = result.getInt("accountType");
-		}
-		return accountType;
+		
+		return result;
 	}
 	
-	public void editarUsuario(String nombre, Integer numero, String correoe) throws SQLException{
+	public void editarUsuario(Integer id, String nombre, Integer numero, String correoe) throws SQLException{
 		Connection con = miConexion.getConexion();
-				
-		//Guardar los datos
-		PreparedStatement pStatement = con.prepareStatement("INSERT INTO USUARIOS (userName, userPhone, email)"+"values(?,?,?)");
-		pStatement.setString(1, nombre);
-		pStatement.setInt(2, numero);
-		pStatement.setString(3, correoe);
+		
+		//Buscar el usuario los datos
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userId = '"+id+"'");
+		ResultSet result = pStatement.executeQuery();
+		if (!result.first()) {
+			//Guardar los datos
+			pStatement = con.prepareStatement("UPDATE USUARIOS Set userName = '"+nombre+"', userPhone = '"+numero+"', email = '"+correoe+"' WHERE userId = '"+id+"'");
+		}
 	}
 }

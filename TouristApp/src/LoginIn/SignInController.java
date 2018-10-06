@@ -3,6 +3,7 @@ package LoginIn;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 
 import DataBase.Lugaresdb;
 import DataBase.Usuariosdb;
+import application.usuarioseditController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,23 +56,49 @@ public class SignInController implements Initializable {
 		Boolean verificado = verificarDatos();
 		if (verificado == true) {
 			try {
-				miUsuario.crearUsuario(name,password,email,phone,tipo,birth);
-				if (tipo == 1) {
-					Parent newScene = FXMLLoader.load(getClass().getResource("/administrador/Administrador.fxml"));
-					Scene scene = new Scene(newScene,400,550);
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					window.setScene(scene);
-					window.show();
-				}else if (tipo == 2) {
-					Parent newScene = FXMLLoader.load(getClass().getResource("/application/userset.fxml"));
-					Scene scene = new Scene(newScene,400,550);
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					window.setScene(scene);
-					window.show();
+				boolean verifCrearUsuario = miUsuario.crearUsuario(name,password,email,phone,tipo,birth);
+				if(verifCrearUsuario == true) {
+					//Se guarda la informacion del usuario
+					ResultSet usuarioEnSesion = miUsuario.IniciarSesion(name,password);
+					Usuario userLoggedIn = new Usuario();
+					userLoggedIn.ingresarUsuario(usuarioEnSesion);
+					
+					if (userLoggedIn.getAccountType() == 1) {
+						FXMLLoader loader = new FXMLLoader();
+						Parent newScene = loader.load(getClass().getResource("/administrador/Administrador.fxml"));
+
+						//Se envian los datos del usuario
+						usuarioseditController uec = loader.getController();
+						uec.setUserLoggedIn(userLoggedIn);
+						
+						Scene scene = new Scene(newScene,400,550);
+						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+						window.setScene(scene);
+						window.show();
+					}else if (userLoggedIn.getAccountType() == 2) {
+						FXMLLoader loader = new FXMLLoader();
+						Parent newScene = loader.load(getClass().getResource("/application/userset.fxml"));
+
+						//Se envian los datos del usuario
+						usuarioseditController uec = loader.getController();
+						uec.setUserLoggedIn(userLoggedIn);
+						
+						Scene scene = new Scene(newScene,400,550);
+						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+						window.setScene(scene);
+						window.show();
+					}
+				}else if(verifCrearUsuario == false) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("El nomre de usario ya existe");
+					alert.setContentText("cambia el nombre del usuario para continuar");
+					
+					alert.showAndWait();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				Alert alert = new Alert(AlertType.INFORMATION);
+				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Error de conexion");
 				alert.setContentText("Error al guardar en base de datos");
@@ -78,7 +106,7 @@ public class SignInController implements Initializable {
 				alert.showAndWait();
 			}
 		}else if (verificado == false) {
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Error en datos ingresado");
 			alert.setContentText("Verifica tus datos ingresados");

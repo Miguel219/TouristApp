@@ -46,7 +46,7 @@ public class AdministradorController {
 		if (verificado == true) {
 			imageContainer.setImage(image);
 		}else if (verificado == false) {
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Error al encontrar la imagen");
 			alert.setContentText("Verifica la direccion de la imagen");
@@ -61,9 +61,16 @@ public class AdministradorController {
 		if (verificado == true) {
 			try {
 				miLugar.ingresarLugar(name,country,imagePath);
+				//Mostrar mansaje de que se guardo la imagen
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Exito");
+				alert.setHeaderText("Se ha guardado la imagen correctamente");
+
+				alert.showAndWait();
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				Alert alert = new Alert(AlertType.INFORMATION);
+				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Error de conexion");
 				alert.setContentText("Error al guardar en base de datos");
@@ -71,7 +78,7 @@ public class AdministradorController {
 				alert.showAndWait();
 			}
 		}else if (verificado == false) {
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Error en datos ingresado");
 			alert.setContentText("Verifica tus datos ingresados");
