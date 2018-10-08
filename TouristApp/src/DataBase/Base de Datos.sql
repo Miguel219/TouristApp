@@ -18,19 +18,19 @@ CREATE TABLE Lugares (
 );
 CREATE TABLE Tags (
 	tagId int NOT NULL AUTO_INCREMENT,
-    tag char(10) NOT NULL,
+    tag char(20) NOT NULL,
     PRIMARY KEY (tagId)
 );
 CREATE TABLE Comentarios (
 	commentId int NOT NULL AUTO_INCREMENT,
     comment char(200) NOT NULL,
-    commentDate DateTime(6) NOT NULL,
+    commentDate DateTime(20) NOT NULL,
     PRIMARY KEY (commentId)
 );
 CREATE TABLE Calificaciones (
 	qualificationId INT NOT NULL AUTO_INCREMENT,
     qualification Int(1) NOT NULL,
-    qualificationDate DateTime(6) NOT NULL,
+    qualificationDate DateTime(20) NOT NULL,
     PRIMARY KEY (qualificationId)
 );
 

@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import DataBase.Lugaresdb;
 import DataBase.Usuariosdb;
+import application.Main;
 import application.usuarioseditController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import javafx.stage.Stage;
 
 public class SignInController implements Initializable {
 
+	private Main main;
 	@FXML
 	private TextField nameTextField;
 	@FXML
@@ -59,34 +61,19 @@ public class SignInController implements Initializable {
 				boolean verifCrearUsuario = miUsuario.crearUsuario(name,password,email,phone,tipo,birth);
 				if(verifCrearUsuario == true) {
 					//Se guarda la informacion del usuario
-					ResultSet usuarioEnSesion = miUsuario.IniciarSesion(name,password);
+					ResultSet usuarioEnSesion = miUsuario.buscarUsuario(name,password);
 					Usuario userLoggedIn = new Usuario();
 					userLoggedIn.ingresarUsuario(usuarioEnSesion);
 					
 					if (userLoggedIn.getAccountType() == 1) {
-						FXMLLoader loader = new FXMLLoader();
-						Parent newScene = loader.load(getClass().getResource("/administrador/Administrador.fxml"));
-
-						//Se envian los datos del usuario
-						usuarioseditController uec = loader.getController();
-						uec.setUserLoggedIn(userLoggedIn);
 						
-						Scene scene = new Scene(newScene,400,550);
-						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-						window.setScene(scene);
-						window.show();
+						main = new Main();
+						main.changeToAdmin();
+						
 					}else if (userLoggedIn.getAccountType() == 2) {
-						FXMLLoader loader = new FXMLLoader();
-						Parent newScene = loader.load(getClass().getResource("/application/userset.fxml"));
-
-						//Se envian los datos del usuario
-						usuarioseditController uec = loader.getController();
-						uec.setUserLoggedIn(userLoggedIn);
+						main = new Main();
+						main.changeToUserEdit(userLoggedIn);
 						
-						Scene scene = new Scene(newScene,400,550);
-						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-						window.setScene(scene);
-						window.show();
 					}
 				}else if(verifCrearUsuario == false) {
 					Alert alert = new Alert(AlertType.ERROR);

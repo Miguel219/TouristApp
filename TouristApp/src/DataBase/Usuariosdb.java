@@ -26,6 +26,8 @@ public class Usuariosdb {
 		// TODO Auto-generated constructor stub
 		miConexion = new Conexion();
 	}
+	
+	//Crea un usuario
 	public boolean crearUsuario(String name, String password, String email, int phone, int tipe, Date birth) throws Exception {
 		Connection con = miConexion.getConexion();
 		//convertir fecha
@@ -50,7 +52,8 @@ public class Usuariosdb {
 		return false;
 	}
 
-	public ResultSet IniciarSesion(String name,String password) throws Exception {
+	//Busca que exista el usuario
+	public ResultSet buscarUsuario(String name,String password) throws Exception {
 		Connection con = miConexion.getConexion();		
 		//Buscar el usuario los datos
 		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+name+"' AND userPassword = '"+password+"'");
@@ -59,15 +62,19 @@ public class Usuariosdb {
 		return result;
 	}
 	
-	public void editarUsuario(Integer id, String nombre, Integer numero, String correoe) throws SQLException{
+	//edita el usuario
+	public boolean editarUsuario(Integer id, String nombre, Integer numero, String correoe) throws SQLException{
 		Connection con = miConexion.getConexion();
 		
-		//Buscar el usuario los datos
-		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userId = '"+id+"'");
+		//Buscar que el nombre
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+nombre+"' AND userId != '"+id+"'");
 		ResultSet result = pStatement.executeQuery();
 		if (!result.first()) {
 			//Guardar los datos
 			pStatement = con.prepareStatement("UPDATE USUARIOS Set userName = '"+nombre+"', userPhone = '"+numero+"', email = '"+correoe+"' WHERE userId = '"+id+"'");
+			pStatement.executeUpdate();
+			return true;
 		}
+		return false;
 	}
 }

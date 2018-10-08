@@ -1,6 +1,8 @@
 package application;
 	
 import LoginIn.Usuario;
+import administrador.Lugar;
+import administrador.TagsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -29,21 +31,58 @@ public class Main extends Application {
 		}
 	}
 	
-	public void changeStage(Usuario userLoggedIn) {
+	public void changeToUserEdit(Usuario userLoggedIn) {
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/application/userset.fxml"));
 			Parent newScene = loader.load();
+			
 			//Se envian los datos del usuario
 			usuarioseditController uec = loader.getController();
 			uec.setUserLoggedIn(userLoggedIn);
 			uec.llenarUsuarioLogged();
-			loader.setController(userLoggedIn);
 			
 			Scene scene = new Scene(newScene,400,550);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeToAdmin() {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/administrador/Administrador.fxml"));
+			Parent newScene = loader.load();			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeToTags(Lugar lugar) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/administrador/Tags.fxml"));
+			Parent newScene = loader.load();	
+			
+			//Se envian los datos del usuario
+			TagsController tc = loader.getController();
+			tc.setLugar(lugar);
+			tc.llenarInfoLugar();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
