@@ -88,6 +88,21 @@ public class Main extends Application {
 		}
 	}
 	
+	public void changeToEditPlace() {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/administrador/Lugares.fxml"));
+			Parent newScene = loader.load();			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void changeToSearch(Usuario userLoggedIn) {
 		try {
 			

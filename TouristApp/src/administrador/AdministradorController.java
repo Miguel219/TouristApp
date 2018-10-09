@@ -73,7 +73,7 @@ public class AdministradorController {
 					lugar = new Lugar();
 					lugar.ingresarLugar(result);
 				
-					//Mostrar mansaje de que se guardo la imagen
+					//Mostrar mansaje de que se guardo el lugar
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Exito");
 					alert.setHeaderText("Se ha guardado el lugar correctamente correctamente");
@@ -104,11 +104,17 @@ public class AdministradorController {
 		}else if (verificado == false) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("Error en datos ingresado");
+			alert.setHeaderText("Error en datos ingresados");
 			alert.setContentText("Verifica tus datos ingresados");
 
 			alert.showAndWait();
 		}
+	}
+	
+	public void editarLugar() {
+		
+		main = new Main();
+		main.changeToEditPlace();
 	}
 	
 	public Boolean verificarPath() {
@@ -127,8 +133,14 @@ public class AdministradorController {
 		try {
 			miLugar = new Lugaresdb();
 			name = nameTextField.getText();
-			country = countryTextField.getText();			
+			if(name==null)
+				return false;
+			country = countryTextField.getText();
+			if(country==null)
+				return false;
 			imagePath = imagePathTextField.getText();
+			if(imagePath==null)
+				return false;
 		    image = new Image(new FileInputStream(imagePath));
 		    return true;
 		} catch (Exception e) {

@@ -11,7 +11,6 @@ public class Conexion {
 	private String user;
 	private String password;
 	private String baseDatos;
-	
 
 	public Conexion() {
 		// TODO Auto-generated constructor stub

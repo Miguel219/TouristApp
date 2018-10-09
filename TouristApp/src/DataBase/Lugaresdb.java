@@ -59,9 +59,11 @@ public class Lugaresdb {
 		//Buscar la imagen en base de datos
 		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES WHERE placeName = '"+name+"' AND  placeCountry = '"+country+"'");
 		ResultSet result = pStatement.executeQuery();
-		
-		return result;
+		if (result.first())
+			return result;
+		return null;
 	}
+	
 	//Hace la relacion entre un tag y un lugar
 	public boolean ingresarTag(int placeId, String tag) throws Exception {
 		Connection con = miConexion.getConexion();
