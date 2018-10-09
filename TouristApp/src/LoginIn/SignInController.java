@@ -65,6 +65,12 @@ public class SignInController implements Initializable {
 					Usuario userLoggedIn = new Usuario();
 					userLoggedIn.ingresarUsuario(usuarioEnSesion);
 					
+					//Se buscan los tags seguidos por el usuario
+					ResultSet tagsSeguidosPorUsuario = miUsuario.buscarTagsSeguidosPorUsuario(userLoggedIn.getUserId());
+					if(tagsSeguidosPorUsuario!=null) {
+						userLoggedIn.ingresarTags(tagsSeguidosPorUsuario);
+					}
+					
 					if (userLoggedIn.getAccountType() == 1) {
 						
 						main = new Main();

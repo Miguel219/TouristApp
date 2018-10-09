@@ -41,7 +41,7 @@ public class Main extends Application {
 			//Se envian los datos del usuario
 			usuarioseditController uec = loader.getController();
 			uec.setUserLoggedIn(userLoggedIn);
-			uec.llenarUsuarioLogged();
+			uec.llenarClase();
 			
 			Scene scene = new Scene(newScene,400,550);
 			primaryStage.setScene(scene);
@@ -98,7 +98,7 @@ public class Main extends Application {
 			//Se envian los datos del usuario
 			searchTagController stc = loader.getController();
 			stc.setUserLoggedIn(userLoggedIn);
-			stc.llenarUsuarioLogged();
+			stc.llenarClase();
 			
 			Scene scene = new Scene(newScene,400,550);
 			primaryStage.setScene(scene);

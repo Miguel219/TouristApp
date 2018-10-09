@@ -88,4 +88,15 @@ public class Usuariosdb {
 			return result;
 		return null;
 	}
+	
+	//Busca los tags seguidos por un usuario  
+	public ResultSet buscarTagsSeguidosPorUsuario(int userId) throws SQLException {
+		Connection con = miConexion.getConexion();
+		//Buscar la relacion del Id del tag con la de lugares
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM Tags INNER JOIN RelacionTagsUsuarios ON Tags.tagId = RelacionTagsUsuarios.tagId WHERE RelacionTagsUsuarios.userId = '"+userId+"'");
+		ResultSet result = pStatement.executeQuery();
+		if (result.first())
+			return result;
+		return null;
+	}
 }
