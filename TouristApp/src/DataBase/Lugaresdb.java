@@ -43,5 +43,10 @@ public class Lugaresdb {
 		pStatement.setBlob(3, image);
 		pStatement.executeUpdate();
 	}
-
+	public void eliminarlugar(String name) throws SQLException {
+		Connection con = miConexion.getConexion();
+		Statement statement = con.createStatement();
+		String q = "DELETE FROM LUGARES WHERE placeName = '" + name + "'";
+		statement.executeUpdate(q);
+	}
 }
