@@ -88,6 +88,27 @@ public class Main extends Application {
 		}
 	}
 	
+	public void changeToSearch(Usuario userLoggedIn) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/application/searchTag.fxml"));
+			Parent newScene = loader.load();
+			
+			//Se envian los datos del usuario
+			searchTagController stc = loader.getController();
+			stc.setUserLoggedIn(userLoggedIn);
+			stc.llenarUsuarioLogged();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

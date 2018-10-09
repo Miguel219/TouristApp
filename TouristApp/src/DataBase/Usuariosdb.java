@@ -77,4 +77,15 @@ public class Usuariosdb {
 		}
 		return false;
 	}
+	
+	//Busca un tag especifico 
+	public ResultSet buscarTag(String tagName) throws SQLException {
+		Connection con = miConexion.getConexion();
+		//Buscar la relacion del Id del tag con la de lugares
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM Tags WHERE tag LIKE '%"+tagName+"%'");
+		ResultSet result = pStatement.executeQuery();
+		if (result.first())
+			return result;
+		return null;
+	}
 }
