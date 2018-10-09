@@ -111,8 +111,14 @@ public class SignInController implements Initializable {
 		try {
 			miUsuario = new Usuariosdb();
 			name = nameTextField.getText();
+			if(name==null)
+				return false;
 			email = emailTextField.getText();	
+			if(email==null)
+				return false;
 			password = passwordTextField.getText();
+			if(password==null)
+				return false;
 		    phone = Integer.parseInt(phoneTextField.getText());
 		    //se encuentra la opcion seleccionada en el combobox
 		    String tipoString = tipeComboBox.getValue();
