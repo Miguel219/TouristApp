@@ -1,6 +1,3 @@
-
-TouristApp/bin/DataBase/Base de Datos.sql
-TouristApp/src/DataBase/Lugaresdb.java
-TouristApp/src/userset/uset.java
-TouristApp/src/userset/uset.java
-*.java
+.classpath
+.project
+build.fxbuild
