@@ -2,6 +2,7 @@ package DataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Conexion {
@@ -11,6 +12,7 @@ public class Conexion {
 	private String user;
 	private String password;
 	private String baseDatos;
+	
 
 	public Conexion() {
 		// TODO Auto-generated constructor stub
@@ -51,6 +53,13 @@ public class Conexion {
 	
 	public void cerrarConexion() throws SQLException {
 		conn.close();
+	}
+
+
+
+	public static PreparedStatement preparestatement(String query) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
