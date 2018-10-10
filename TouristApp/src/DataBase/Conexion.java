@@ -55,11 +55,4 @@ public class Conexion {
 		conn.close();
 	}
 
-
-
-	public static PreparedStatement preparestatement(String query) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

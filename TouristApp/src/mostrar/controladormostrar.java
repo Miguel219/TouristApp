@@ -29,7 +29,6 @@ import DataBase.Lugaresdb;
 import DataBase.Conexion;
 import administrador.Lugar;
 import application.Main;
-import net.proteanit.sql.DbUtils;
 
 public class controladormostrar {
 
@@ -53,10 +52,6 @@ public class controladormostrar {
 	private Lugar lugar;
 	
 	public void mostrarlugares() {
-		String query = "select * from Lugaresdb";
-		PreparedStatement pst = Conexion.preparestatement(query);
-		ResultSet rs = pst.executeQuery();
-		table.setModel(DbUtils.resultsetToTableModel(rs));
 		
 		
 		
