@@ -175,29 +175,28 @@ public class usuarioseditController {
 		
 		//Botones
 		try {
-			ImageView accountImage = new ImageView(new Image(new FileInputStream(this.getClass().getResource("/application/Images/account.png").toString())));
+			ImageView accountImage = new ImageView(new Image(this.getClass().getResource("/application/Images/account.png").toString()));
 			accountImage.setFitHeight(50);
 			accountImage.setFitWidth(50);
 			account.setGraphic(accountImage);
 			account.setDisable(true);
 			
-			ImageView homeImage = new ImageView(new Image(new FileInputStream(this.getClass().getResource("/application/Images/home.png").toString())));
+			ImageView homeImage = new ImageView(new Image(this.getClass().getResource("/application/Images/home.png").toString()));
 			homeImage.setFitHeight(50);
 			homeImage.setFitWidth(50);
 			home.setGraphic(homeImage);
 			
-			ImageView searchImage = new ImageView(new Image(new FileInputStream(this.getClass().getResource("/application/Images/search.png").toString())));
+			ImageView searchImage = new ImageView(new Image(this.getClass().getResource("/application/Images/search.png").toString()));
 			searchImage.setFitHeight(50);
 			searchImage.setFitWidth(50);
 			search.setGraphic(searchImage);
 
-			ImageView pinImage = new ImageView(new Image(new FileInputStream(this.getClass().getResource("/application/Images/pin.png").toString())));
+			ImageView pinImage = new ImageView(new Image(this.getClass().getResource("/application/Images/pin.png").toString()));
 			pinImage.setFitHeight(50);
 			pinImage.setFitWidth(50);
 			pin.setGraphic(pinImage);
 		}catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
 		}
 	}
 	

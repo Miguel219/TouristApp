@@ -24,13 +24,13 @@ CREATE TABLE Tags (
 CREATE TABLE Comentarios (
 	commentId int NOT NULL AUTO_INCREMENT,
     comment char(200) NOT NULL,
-    commentDate DateTime(20) NOT NULL,
+    commentDate DateTime(6) NOT NULL,
     PRIMARY KEY (commentId)
 );
 CREATE TABLE Calificaciones (
 	qualificationId INT NOT NULL AUTO_INCREMENT,
     qualification Int(1) NOT NULL,
-    qualificationDate DateTime(20) NOT NULL,
+    qualificationDate DateTime(6) NOT NULL,
     PRIMARY KEY (qualificationId)
 );
 
