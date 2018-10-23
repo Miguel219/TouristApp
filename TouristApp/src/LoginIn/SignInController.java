@@ -95,7 +95,6 @@ public class SignInController implements Initializable {
 				alert.setTitle("Error");
 				alert.setHeaderText("Error de conexion");
 				alert.setContentText("Error al guardar en base de datos");
-				e.printStackTrace();
 
 				alert.showAndWait();
 			}
