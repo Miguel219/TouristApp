@@ -84,8 +84,8 @@ public class SignInController implements Initializable {
 				}else if(verifCrearUsuario == false) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Error");
-					alert.setHeaderText("El nomre de usario ya existe");
-					alert.setContentText("cambia el nombre del usuario para continuar");
+					alert.setHeaderText("El nombre de usario ya existe");
+					alert.setContentText("Cambia el nombre del usuario para continuar");
 					
 					alert.showAndWait();
 				}
@@ -95,6 +95,7 @@ public class SignInController implements Initializable {
 				alert.setTitle("Error");
 				alert.setHeaderText("Error de conexion");
 				alert.setContentText("Error al guardar en base de datos");
+				e.printStackTrace();
 
 				alert.showAndWait();
 			}
