@@ -99,4 +99,21 @@ public class Usuariosdb {
 			return result;
 		return null;
 	}
+	
+	//Relaciona a un tag con un usuario  
+		public boolean seguirTag(int tagId,int userId) throws SQLException {
+			Connection con = miConexion.getConexion();
+			//Buscar si la relacion existe 
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM RelacionTagsUsuarios WHERE tagId = '"+tagId+"' AND userId = '"+userId+"'");
+			ResultSet result = pStatement.executeQuery();
+			if (!result.first()) {
+				//Guardar los datoss
+				pStatement = con.prepareStatement("INSERT INTO RelacionTagsUsuarios (tagId, userId)"+"values(?,?)");
+				pStatement.setInt(1, tagId);
+				pStatement.setInt(2, userId);
+				pStatement.executeUpdate();
+				return true;
+			}
+			return false;
+		}
 }

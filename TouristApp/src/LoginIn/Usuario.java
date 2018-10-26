@@ -1,12 +1,16 @@
 package LoginIn;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import DataBase.Usuariosdb;
+import administrador.Lugar;
 import application.Tag;
+import javafx.scene.image.Image;
 
 public class Usuario {
 
@@ -18,6 +22,7 @@ public class Usuario {
 	private int accountType;
 	private int age;
 	private ArrayList<Tag> tagList;
+	private ArrayList<Lugar> placeList;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -29,7 +34,7 @@ public class Usuario {
 		accountType = 0;
 		age = 0;
 		tagList = new ArrayList<Tag>();
-		
+		placeList = new  ArrayList<Lugar>();
 	}
 	//Ingresa a un usuario en especifico
 	public void ingresarUsuario(ResultSet usuario) throws SQLException {
@@ -52,8 +57,7 @@ public class Usuario {
 	//Ingresa los tags seguidos por el usuario
 	public void ingresarTags(ResultSet tags) throws SQLException {
 		
-		Usuariosdb usuariodb = new Usuariosdb();
-		while (tags.next()) {
+		do {
 			int tagId = tags.getInt("userId");
 			String tagName = tags.getString("tag");
 			//Se guarda el objeto modelo 			
@@ -62,9 +66,42 @@ public class Usuario {
 			tagModelo.setTagId(tagId);
 			//Se agrega al arraylist
 			tagList.add(tagModelo);
-		}
+		}while (tags.next());
 		
 	}
+	
+	//Ingresa los lugares seguidos por el usuario
+		public void ingresarLugares(ResultSet lugares) throws SQLException {
+			
+			do {
+				int placeId = lugares.getInt("placeId");
+				String placeName = lugares.getString("placeName");
+				String placeCountry = lugares.getString("placeCountry");
+				Blob placeImageBlob = lugares.getBlob("placeImage");
+				InputStream placeImageIS = placeImageBlob.getBinaryStream();
+				Image imageModel = new Image(placeImageIS);
+				Image placeImage = imageModel;
+				
+				//Se guarda el objeto modelo 			
+				Lugar lugarModelo = new Lugar();
+				lugarModelo.setPlaceId(placeId);
+				lugarModelo.setPlaceCountry(placeCountry);
+				lugarModelo.setPlaceName(placeName);
+				lugarModelo.setPlaceImage(placeImage);
+				
+				//Se agrega al arraylist
+				boolean encontrado = false;
+				for (int i = 0; i < placeList.size(); i++) {
+					if(placeId==placeList.get(i).getPlaceId()) {
+						encontrado = true;
+					}
+				}
+				if(encontrado == false)
+					placeList.add(lugarModelo);
+				
+			}while (lugares.next());
+			
+		}
 	
 	/**
 	 * @return the userId
@@ -174,6 +211,18 @@ public class Usuario {
 	 */
 	public void setTagList(ArrayList<Tag> tagList) {
 		this.tagList = tagList;
+	}
+	/**
+	 * @return the placeList
+	 */
+	public ArrayList<Lugar> getPlaceList() {
+		return placeList;
+	}
+	/**
+	 * @param placeList the placeList to set
+	 */
+	public void setPlaceList(ArrayList<Lugar> placeList) {
+		this.placeList = placeList;
 	}
 
 	

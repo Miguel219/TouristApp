@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,17 +53,41 @@ public class Lugaresdb {
 		}
 		return false;
 	}
-	//Busca un lugar
-	public ResultSet buscarLugar(String name,String country) throws Exception {
+	//Busca un lugar por nombre y ciudad
+	public ResultSet buscarLugarPorId(int placeId) throws Exception {
 		Connection con = miConexion.getConexion();	
 		
 		//Buscar la imagen en base de datos
-		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES WHERE placeName = '"+name+"' AND  placeCountry = '"+country+"'");
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES WHERE placeId = '"+placeId+"'");
 		ResultSet result = pStatement.executeQuery();
 		if (result.first())
 			return result;
 		return null;
 	}
+	
+	//Busca un lugar por Id
+		public ResultSet buscarLugar(String name,String country) throws Exception {
+			Connection con = miConexion.getConexion();	
+			
+			//Buscar la imagen en base de datos
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES WHERE placeName = '"+name+"' AND  placeCountry = '"+country+"'");
+			ResultSet result = pStatement.executeQuery();
+			if (result.first())
+				return result;
+			return null;
+		}
+	
+	//Busca un lugar por Tag
+		public ResultSet buscarLugarPorTag(int tagId) throws Exception {
+			Connection con = miConexion.getConexion();	
+			
+			//Buscar la imagen en base de datos
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES INNER JOIN RelacionTagsLugares ON Lugares.placeId = RelacionTagsLugares.placeId WHERE RelacionTagsLugares.tagId = '"+tagId+"'");
+			ResultSet result = pStatement.executeQuery();
+			if (result.first())
+				return result;
+			return null;
+		}
 	
 	//Hace la relacion entre un tag y un lugar
 	public boolean ingresarTag(int placeId, String tag) throws Exception {
@@ -82,7 +107,6 @@ public class Lugaresdb {
 			//Buscar el Id del tag
 			pStatement = con.prepareStatement("SELECT * FROM Tags WHERE tag = '"+tag+"'");
 			result = pStatement.executeQuery();
-			System.out.println("1");
 		}
 		
 		if(result.first()) {
@@ -108,6 +132,57 @@ public class Lugaresdb {
 		return false;
 		
 	}
+	
+	//Hace la relacion entre un tag y un lugar
+	public boolean ingresarComentario(int placeId, int userId, String comment, int qualification) throws Exception {
+		Connection con = miConexion.getConexion();
+		
+		//Buscar la relacion en base de datos
+		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM Relacion WHERE userId = '"+userId+"' AND placeId = '"+placeId+"'");
+		ResultSet result = pStatement.executeQuery();
+		
+		if (!result.first()) {
+			
+			java.util.Date currentDate = new java.util.Date();
+			
+			Date sqlCurrentDate = new Date(currentDate.getTime());
+			
+			//Guardar el comentario
+			pStatement = con.prepareStatement("INSERT INTO Comentarios (comment,commentDate)"+"values(?,?)");
+			pStatement.setString(1, comment);
+			pStatement.setDate(2, sqlCurrentDate);
+			pStatement.executeUpdate();
+			
+			pStatement = con.prepareStatement("SELECT * FROM Comentarios WHERE comment = '"+comment+"' AND commentDate = '"+sqlCurrentDate+"'");
+			ResultSet resultComment = pStatement.executeQuery();
+			
+			//Guardar calificacion
+			pStatement = con.prepareStatement("INSERT INTO Calificaciones (qualification,qualificationDate)"+"values(?,?)");
+			pStatement.setInt(1, qualification);
+			pStatement.setDate(2, sqlCurrentDate);
+			pStatement.executeUpdate();
+			
+			pStatement = con.prepareStatement("SELECT * FROM Calificaciones WHERE qualification = '"+qualification+"' AND qualificationDate = '"+sqlCurrentDate+"'");
+			ResultSet resultQualification = pStatement.executeQuery();
+			
+			if((resultComment.first())&&(resultQualification.first())) {
+				
+				int commentId = resultComment.getInt("commentId");
+				int qualificationId = resultQualification.getInt("qualificationId");
+				//Guardar la relacion
+				pStatement = con.prepareStatement("INSERT INTO Relacion (userId,placeId,commentId,qualificationId)"+"values(?,?,?,?)");
+				pStatement.setInt(1, userId);
+				pStatement.setInt(2, placeId);
+				pStatement.setInt(3, commentId);
+				pStatement.setInt(4, qualificationId);
+				pStatement.executeUpdate();
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 	public void eliminarlugar(String name) throws SQLException {
 		Connection con = miConexion.getConexion();
 		Statement statement = con.createStatement();

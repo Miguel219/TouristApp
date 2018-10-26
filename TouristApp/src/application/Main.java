@@ -124,6 +124,49 @@ public class Main extends Application {
 		}
 	}
 	
+	public void changeToHome(Usuario userLoggedIn) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/application/homePlaces.fxml"));
+			Parent newScene = loader.load();
+			
+			//Se envian los datos del usuario
+			homePlacesController hpc = loader.getController();
+			hpc.setUserLoggedIn(userLoggedIn);
+			hpc.llenarClase();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeToCommentPlace(Lugar lugar, Usuario userLoggedIn) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/application/commentPlace.fxml"));
+			Parent newScene = loader.load();	
+			
+			//Se envian los datos del usuario
+			commentPlaceController cpc = loader.getController();
+			cpc.setLugar(lugar);
+			cpc.setUserLoggedIn(userLoggedIn);
+			cpc.llenarInfoLugar();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

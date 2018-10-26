@@ -143,8 +143,8 @@ public class usuarioseditController {
 	
 	public void goToHome(){
 		
-		//main = new Main();
-		//main.changeToTags(lugar);
+		main = new Main();
+		main.changeToHome(userLoggedIn);
 		
 	}
 	

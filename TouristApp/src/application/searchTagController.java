@@ -5,10 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -65,12 +68,13 @@ public class searchTagController {
 				ResultSet result = miUsuario.buscarTag(tagName);
 				if(result!=null) {
 					searchFlowPane.getChildren().clear();
+
+					ArrayList<Tag> tagsSeguidos = userLoggedIn.getTagList();
 					
-					while (result.next()) {
+					do {
 						//Se inicializa las variables
 						String tagName = result.getString("tag");
 						int tagId = result.getInt("tagId");
-						ArrayList<Tag> tagsSeguidos = userLoggedIn.getTagList();
 						
 						Label label = new Label(tagName);
 						label.setFont(new Font(18));
@@ -86,6 +90,43 @@ public class searchTagController {
 						}
 						if(button.getText()==null) {
 							button.setText("Seguir");
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								
+								@Override
+								public void handle(ActionEvent event) {
+									// TODO Auto-generated method stub
+									Button currentButton = (Button)event.getSource();
+									int tagId = Integer.parseInt(currentButton.getId());
+									try {
+										boolean seguido = miUsuario.seguirTag(tagId,userLoggedIn.getUserId());
+										if(seguido==true) {
+											Alert alert = new Alert(AlertType.INFORMATION);
+											alert.setTitle("Exito");
+											alert.setHeaderText("Ahora Sigues al tag");
+											alert.showAndWait();
+											
+											ResultSet tagsSeguidosPorUsuario = miUsuario.buscarTagsSeguidosPorUsuario(userLoggedIn.getUserId());
+											if(tagsSeguidosPorUsuario!=null) {
+												userLoggedIn.ingresarTags(tagsSeguidosPorUsuario);
+											}
+											
+										}else {
+											Alert alert = new Alert(AlertType.ERROR);
+											alert.setTitle("Error");
+											alert.setHeaderText("Error al seguir el tags");
+											alert.setContentText("La relacion ya existe");
+											alert.showAndWait();
+										}
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										Alert alert = new Alert(AlertType.ERROR);
+										alert.setTitle("Error");
+										alert.setHeaderText("Error de base de datos");
+										alert.setContentText("Error al hacer la relacion en base datos");
+										alert.showAndWait();
+									}
+								}
+							});
 						}
 						Region p = new Region();
 						p.setPrefSize(347.0, 4.0);
@@ -99,7 +140,7 @@ public class searchTagController {
 						searchFlowPane.getChildren().add(line);
 						searchFlowPane.getChildren().add(p1);
 						
-					}
+					} while (result.next());
 					
 				}else if(result==null) {
 					Alert alert = new Alert(AlertType.ERROR);
@@ -169,8 +210,8 @@ public class searchTagController {
 	
 	public void goToHome(){
 		
-		//main = new Main();
-		//main.changeToTags(lugar);
+		main = new Main();
+		main.changeToHome(userLoggedIn);
 		
 	}
 	
