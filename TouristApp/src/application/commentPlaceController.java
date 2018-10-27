@@ -212,6 +212,13 @@ public class commentPlaceController {
 		nameLabel.setText(lugar.getPlaceName());
 		countryLabel.setText(lugar.getPlaceCountry());
 		imageContainer.setImage(lugar.getPlaceImage());
+		
+		try {
+			miLugar = new Lugaresdb();
+			ResultSet result = miLugar.buscarComentarios(lugar.getPlaceId());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 }
