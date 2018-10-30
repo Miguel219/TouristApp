@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.sql.rowset.serial.SerialBlob;
@@ -234,5 +235,20 @@ public class Lugaresdb {
 		Statement statement = con.createStatement();
 		String q = "DELETE FROM LUGARES WHERE placeName = '" + name + "'";
 		statement.executeUpdate(q);
+	}
+	public ArrayList<String> sitiosrecientes(String userId) throws Exception {
+		ArrayList<String> result = new ArrayList<String>();
+		Connection con = miConexion.getConexion();
+		PreparedStatement pStatement = con.prepareStatement("SELECT placeId FROM Relacion where userId = '" + userId + "'");
+		ResultSet resul = pStatement.executeQuery();
+		try {
+			while(resul.next()) {
+				result.add(resul.getString("placeId"));
+			}
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return result;
 	}
 }
