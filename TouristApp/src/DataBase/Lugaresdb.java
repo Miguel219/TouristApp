@@ -185,24 +185,38 @@ public class Lugaresdb {
 	}
 	
 	//Hace la relacion entre un tag y un lugar
-		public ResultSet buscarComentarios(int placeId) throws Exception {
-			Connection con = miConexion.getConexion();
-			
-			//Buscar la relacion en base de datos
-			PreparedStatement pStatement = con.prepareStatement("SELECT Comentarios.commentId, Comentarios.comment, Comentarios.commentDate, "
-					+ "Calificaciones.qualificationId, (   SELECT AVG(qualification) FROM Calificaciones INNER JOIN Relacion ON Relacion.placeId = '"+placeId+"' WHERE Calificaciones.qualificationId = Relacion.qualificationId) AS qualification, Calificaciones.qualificationDate, "
-					+ " Usuarios.userId, Usuarios.userName FROM Relacion "
-					+ "INNER JOIN Comentarios ON Comentarios.commentId = Relacion.commentId "
-					+ "INNER JOIN Calificaciones ON Calificaciones.qualificationId = Relacion.qualificationId "
-					+ "INNER JOIN Usuarios ON Usuarios.userId = Relacion.userId "
-					+ "WHERE placeId = '"+placeId+"'");
-			ResultSet result = pStatement.executeQuery();
-			
-			if (result.first()) 
-				return result;
-			return null;
-			
-		}
+	public ResultSet buscarComentarios(int placeId) throws Exception {
+		Connection con = miConexion.getConexion();
+		
+		//Buscar la relacion en base de datos
+		PreparedStatement pStatement = con.prepareStatement("SELECT Relacion.relationshipId, Comentarios.commentId, Comentarios.comment, Comentarios.commentDate, "
+				+ "Calificaciones.qualificationId, Calificaciones.qualification, Calificaciones.qualificationDate, "
+				+ " Usuarios.userId, Usuarios.userName FROM Relacion "
+				+ "INNER JOIN Comentarios ON Comentarios.commentId = Relacion.commentId "
+				+ "INNER JOIN Calificaciones ON Calificaciones.qualificationId = Relacion.qualificationId "
+				+ "INNER JOIN Usuarios ON Usuarios.userId = Relacion.userId "
+				+ "WHERE placeId = '"+placeId+"'");
+		ResultSet result = pStatement.executeQuery();
+		
+		if (result.first()) 
+			return result;
+		return null;
+		
+	}
+	
+	public ResultSet calificacionPromedio(int placeId) throws Exception {
+		Connection con = miConexion.getConexion();
+		
+		//Buscar la relacion en base de datos
+		PreparedStatement pStatement = con.prepareStatement("(SELECT AVG(qualification) FROM Calificaciones INNER JOIN Relacion ON Relacion.placeId = '"+placeId+"' WHERE Calificaciones.qualificationId = Relacion.qualificationId) AS qualification"
+				+ "WHERE placeId = '"+placeId+"'");
+		ResultSet result = pStatement.executeQuery();
+		
+		if (result.first()) 
+			return result;
+		return null;
+		
+	}
 	
 	public void eliminarlugar(String name) throws SQLException {
 		Connection con = miConexion.getConexion();

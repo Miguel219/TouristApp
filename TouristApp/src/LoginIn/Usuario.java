@@ -58,7 +58,7 @@ public class Usuario {
 	public void ingresarTags(ResultSet tags) throws SQLException {
 		
 		do {
-			int tagId = tags.getInt("userId");
+			int tagId = tags.getInt("tagId");
 			String tagName = tags.getString("tag");
 			//Se guarda el objeto modelo 			
 			Tag tagModelo = new Tag();
