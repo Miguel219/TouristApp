@@ -53,7 +53,7 @@ public class Lugaresdb {
 		}
 		return false;
 	}
-	//Busca un lugar por nombre y ciudad
+	//Busca un lugar por Id
 	public ResultSet buscarLugarPorId(int placeId) throws Exception {
 		Connection con = miConexion.getConexion();	
 		
@@ -65,7 +65,7 @@ public class Lugaresdb {
 		return null;
 	}
 	
-	//Busca un lugar por Id
+	//Busca un lugar por nombre y ciudad
 		public ResultSet buscarLugar(String name,String country) throws Exception {
 			Connection con = miConexion.getConexion();	
 			
@@ -83,6 +83,18 @@ public class Lugaresdb {
 			
 			//Buscar la imagen en base de datos
 			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES INNER JOIN RelacionTagsLugares ON Lugares.placeId = RelacionTagsLugares.placeId WHERE RelacionTagsLugares.tagId = '"+tagId+"'");
+			ResultSet result = pStatement.executeQuery();
+			if (result.first())
+				return result;
+			return null;
+		}
+		
+	//Busca un lugares comentados por el usuario
+		public ResultSet buscarLugaresVisitados(int userId) throws Exception {
+			Connection con = miConexion.getConexion();	
+			
+			//Buscar la imagen en base de datos
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM LUGARES INNER JOIN Relacion ON Lugares.placeId = Relacion.placeId WHERE Relacion.userId = '"+userId+"'");
 			ResultSet result = pStatement.executeQuery();
 			if (result.first())
 				return result;

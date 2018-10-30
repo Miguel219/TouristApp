@@ -103,6 +103,27 @@ public class Main extends Application {
 		}
 	}
 	
+	public void changeToRecentPlace(Usuario userLoggedIn) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/application/recentPlaces.fxml"));
+			Parent newScene = loader.load();
+			
+			//Se envian los datos del usuario
+			recentPlacesController rpc = loader.getController();
+			rpc.setUserLoggedIn(userLoggedIn);
+			rpc.llenarClase();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void changeToSearch(Usuario userLoggedIn) {
 		try {
 			

@@ -39,7 +39,7 @@ import LoginIn.Usuario;
 import administrador.Lugar;
 
 
-public class homePlacesController {
+public class recentPlacesController {
 
 	private Main main;
 	
@@ -124,7 +124,6 @@ public class homePlacesController {
 			homeImage.setFitHeight(50);
 			homeImage.setFitWidth(50);
 			home.setGraphic(homeImage);
-			home.setDisable(true);
 			
 			ImageView searchImage = new ImageView(new Image(this.getClass().getResource("/application/Images/search.png").toString()));
 			searchImage.setFitHeight(50);
@@ -135,20 +134,17 @@ public class homePlacesController {
 			pinImage.setFitHeight(50);
 			pinImage.setFitWidth(50);
 			pin.setGraphic(pinImage);
+			pin.setDisable(true);
 			
 			//Se buscan los lugares segun los tags seguidos por el usuario
 
 			miLugar = new Lugaresdb();
 			miUsuario = new Usuariosdb();
 			
-			ArrayList<Tag> tagsSeguidos = userLoggedIn.getTagList();
+			ResultSet lugares = miLugar.buscarLugaresVisitados(userLoggedIn.getUserId());	
 			userLoggedIn.setPlaceList(new ArrayList<Lugar>());
-			for (int i = 0; i < tagsSeguidos.size(); i++) {
-				int tagId = tagsSeguidos.get(i).getTagId();
-				ResultSet lugares = miLugar.buscarLugarPorTag(tagId);	
-				if(lugares!=null)
-					userLoggedIn.ingresarLugares(lugares);
-			}
+			if(lugares!=null)
+				userLoggedIn.ingresarLugares(lugares);
 			//Se inicializan los lugares
 			ArrayList<Lugar> lugaresSeguidos = userLoggedIn.getPlaceList();
 			for (int i = 0; i < lugaresSeguidos.size(); i++) {
@@ -168,7 +164,7 @@ public class homePlacesController {
 				
 				Button button = new Button();
 				button.setId(Integer.toString(placeId));
-				button.setText("Calificar");
+				button.setText("Ver Comentarios");
 				button.setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override

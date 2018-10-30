@@ -224,8 +224,8 @@ public class searchTagController {
 	
 	public void goToPin(){
 		
-		//main = new Main();
-		//main.changeToTags(lugar);
+		main = new Main();
+		main.changeToRecentPlace(userLoggedIn);
 		
 	}
 
