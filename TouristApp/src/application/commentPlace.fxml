@@ -39,7 +39,7 @@
             <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#atras" text="Atras" />
             <ScrollPane hbarPolicy="NEVER" layoutX="26.0" layoutY="275.0" prefHeight="150.0" prefWidth="348.0" vbarPolicy="ALWAYS">
                <content>
-                  <FlowPane prefHeight="147.0" prefWidth="330.0" />
+                  <FlowPane fx:id="commentFlowPane" prefHeight="147.0" prefWidth="330.0" />
                </content>
             </ScrollPane>
          </children>
