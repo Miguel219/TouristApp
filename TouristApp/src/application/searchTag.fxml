@@ -16,9 +16,9 @@
             <ButtonBar layoutX="23.0" layoutY="478.0" prefHeight="58.0" prefWidth="216.0">
                <buttons>
                 <Button fx:id="account" mnemonicParsing="false" onAction="#goToAccount" prefHeight="50.0" prefWidth="50.0" />
-                  <Button fx:id="pin" mnemonicParsing="false" onAction="#goToPin" prefHeight="50.0" prefWidth="50.0" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#goToHome" prefHeight="50.0" prefWidth="50.0" />
                   <Button fx:id="search" mnemonicParsing="false" onAction="#goToSearch" prefHeight="50.0" prefWidth="50.0" />
-                  <Button fx:id="home" mnemonicParsing="false" onAction="#goToHome" prefHeight="50.0" prefWidth="50.0" />
+                  <Button fx:id="pin" mnemonicParsing="false" onAction="#goToPin" prefHeight="50.0" prefWidth="50.0" />                  
                </buttons>
             </ButtonBar>
             <TextField fx:id="tagNameTextField" layoutX="23.0" layoutY="39.0" prefHeight="26.0" prefWidth="282.0" />

@@ -188,6 +188,28 @@ public class Main extends Application {
 		}
 	}
 	
+	public void changeToViewCommentPlace(Lugar lugar, Usuario userLoggedIn) {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/application/viewCommentPlace.fxml"));
+			Parent newScene = loader.load();	
+			
+			//Se envian los datos del usuario
+			viewCommentPlaceController vcpc = loader.getController();
+			vcpc.setLugar(lugar);
+			vcpc.setUserLoggedIn(userLoggedIn);
+			vcpc.llenarInfoLugar();
+			
+			Scene scene = new Scene(newScene,400,550);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

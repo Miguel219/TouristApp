@@ -179,7 +179,7 @@ public class recentPlacesController {
 								Lugar lugar = new Lugar();
 								lugar.ingresarLugar(lugares);
 								main = new Main();
-								main.changeToCommentPlace(lugar,userLoggedIn);
+								main.changeToViewCommentPlace(lugar,userLoggedIn);
 							}
 						} catch (Exception e) {
 							// TODO: handle exception

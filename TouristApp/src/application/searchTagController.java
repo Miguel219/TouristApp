@@ -109,6 +109,8 @@ public class searchTagController {
 											if(tagsSeguidosPorUsuario!=null) {
 												userLoggedIn.ingresarTags(tagsSeguidosPorUsuario);
 											}
+											currentButton.setText("Seguido");
+											currentButton.setDisable(true);
 											
 										}else {
 											Alert alert = new Alert(AlertType.ERROR);
