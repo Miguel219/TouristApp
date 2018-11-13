@@ -58,7 +58,9 @@ public class Usuariosdb {
 		//Buscar el usuario los datos
 		PreparedStatement pStatement = con.prepareStatement("SELECT * FROM USUARIOS WHERE userName = '"+name+"' AND userPassword = '"+password+"'");
 		ResultSet result = pStatement.executeQuery();
-		
+		if (!result.first()) {
+			return null;
+		}
 		return result;
 	}
 	

@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.usuarioseditController">
    <bottom>
-      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="48.0" layoutY="45.0" text="Actualizar Informacion del Usuario" textFill="#00c206">
                <font>
@@ -24,13 +24,13 @@
             <TextField fx:id="username" layoutX="126.0" layoutY="164.0" style="-fx-border-color: #00c206;" />
             <TextField fx:id="phone" layoutX="124.0" layoutY="262.0" style="-fx-border-color: #00c206;" />
             <TextField fx:id="email" layoutX="125.0" layoutY="370.0" style="-fx-border-color: #00c206;" />
-            <Button layoutX="170.0" layoutY="424.0" mnemonicParsing="false" onAction="#guardarUsuario" style="-fx-border-color: #00c206;" text="Ingresar" textFill="#00c206" />
+            <Button layoutX="170.0" layoutY="424.0" mnemonicParsing="false" onAction="#guardarUsuario" style="-fx-background-color: lime;" text="Ingresar" />
             <ButtonBar layoutX="23.0" layoutY="478.0" prefHeight="58.0" prefWidth="216.0">
                <buttons>
-                <Button fx:id="account" mnemonicParsing="false" onAction="#goToAccount" prefHeight="50.0" prefWidth="50.0" style="-fx-border-color: #00c206;" />
-                <Button fx:id="home" mnemonicParsing="false" onAction="#goToHome" prefHeight="50.0" prefWidth="50.0" style="-fx-border-color: #00c206;" />
-                  <Button fx:id="search" mnemonicParsing="false" onAction="#goToSearch" prefHeight="50.0" prefWidth="50.0" style="-fx-border-color: #00c206;" />
-                  <Button fx:id="pin" mnemonicParsing="false" onAction="#goToPin" prefHeight="50.0" prefWidth="50.0" style="-fx-border-color: #00c206;" />                  
+                <Button fx:id="account" mnemonicParsing="false" onAction="#goToAccount" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lime;" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#goToHome" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lime;" />
+                  <Button fx:id="search" mnemonicParsing="false" onAction="#goToSearch" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lime;"/>
+                  <Button fx:id="pin" mnemonicParsing="false" onAction="#goToPin" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lime;" />                  
                </buttons>
             </ButtonBar>
          </children>

@@ -80,16 +80,18 @@ public class searchTagController {
 						label.setFont(new Font(18));
 						Button button = new Button();
 						button.setId(Integer.toString(tagId));
-						button.setText(null);
+						button.setText(null);						
 						for (int i = 0; i < tagsSeguidos.size(); i++) {
 							if(tagsSeguidos.get(i).getTagId()==tagId) {
 								button.setText("Seguido");
 								button.setDisable(true);
+								button.setStyle("-fx-background-color: #adff2f;");
 							}
 							
 						}
 						if(button.getText()==null) {
 							button.setText("Seguir");
+							button.setStyle("-fx-background-color: lime;");
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								
 								@Override
@@ -100,10 +102,6 @@ public class searchTagController {
 									try {
 										boolean seguido = miUsuario.seguirTag(tagId,userLoggedIn.getUserId());
 										if(seguido==true) {
-											Alert alert = new Alert(AlertType.INFORMATION);
-											alert.setTitle("Exito");
-											alert.setHeaderText("Ahora Sigues al tag");
-											alert.showAndWait();
 											
 											ResultSet tagsSeguidosPorUsuario = miUsuario.buscarTagsSeguidosPorUsuario(userLoggedIn.getUserId());
 											if(tagsSeguidosPorUsuario!=null) {
@@ -111,6 +109,7 @@ public class searchTagController {
 											}
 											currentButton.setText("Seguido");
 											currentButton.setDisable(true);
+											currentButton.setStyle("-fx-background-color: #adff2f;");
 											
 										}else {
 											Alert alert = new Alert(AlertType.ERROR);

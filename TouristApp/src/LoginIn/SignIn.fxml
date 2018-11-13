@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginIn.SignInController">
    <center>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="151.0" layoutY="238.0" text="Ingresa Tu Email" />
             <TextField fx:id="nameTextField" layoutX="93.0" layoutY="65.0" prefHeight="26.0" prefWidth="214.0" style="-fx-border-color: #00c206;" />
@@ -25,7 +25,7 @@
             <ComboBox fx:id="tipeComboBox" layoutX="118.0" layoutY="341.0" prefHeight="26.0" prefWidth="162.0" style="-fx-border-color: #00c206;" />
             <DatePicker fx:id="birthDay" layoutX="106.0" layoutY="424.0" style="-fx-border-color: #00c206;" />
             <Label layoutX="93.0" layoutY="390.0" text="Ingresa Tu Tipo Fecha de Cumpleaños" />
-            <Button layoutX="151.0" layoutY="473.0" mnemonicParsing="false" onAction="#crearCuenta" style="-fx-border-color: #00c206;" text="Crear Cuenta" textFill="#00c206" />
+            <Button layoutX="151.0" layoutY="473.0" mnemonicParsing="false" onAction="#crearCuenta" style="-fx-background-color: lime;" text="Crear Cuenta" />
          </children>
       </AnchorPane>
    </center>

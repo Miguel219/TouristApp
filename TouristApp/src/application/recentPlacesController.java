@@ -165,6 +165,7 @@ public class recentPlacesController {
 				Button button = new Button();
 				button.setId(Integer.toString(placeId));
 				button.setText("Ver Comentarios");
+				button.setStyle("-fx-background-color: lime;");
 				button.setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override

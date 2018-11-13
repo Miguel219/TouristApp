@@ -12,7 +12,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.commentPlaceController">
    <center>
-      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imageContainer" fitHeight="153.0" fitWidth="256.0" layoutX="71.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="51.0" layoutY="43.0" text="Comentar y Calificar Lugar" textFill="#00c206">
@@ -20,26 +20,26 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="nameLabel" layoutX="71.0" layoutY="79.0" prefHeight="27.0" prefWidth="134.0">
+            <Label fx:id="nameLabel" layoutX="51.0" layoutY="79.0" prefHeight="27.0" prefWidth="134.0">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label fx:id="countryLabel" layoutX="196.0" layoutY="79.0" prefHeight="27.0" prefWidth="138.0">
+            <Label fx:id="countryLabel" layoutX="213.0" layoutY="79.0" prefHeight="27.0" prefWidth="138.0">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="159.0" layoutY="461.0" text="Comentario" AnchorPane.leftAnchor="168.0" />
-            <Button layoutX="155.0" layoutY="509.0" mnemonicParsing="false" onAction="#ingresarComentario" prefHeight="26.0" prefWidth="86.0" style="-fx-border-color: #00c206;" text="Comentar" textFill="#00c206" AnchorPane.leftAnchor="157.0" />
-            <TextField fx:id="commentTextField" layoutX="131.0" layoutY="478.0" style="-fx-border-color: #00c206;" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="126.0" />
+            <Label layoutX="159.0" layoutY="463.0" text="Comentario" AnchorPane.leftAnchor="159.0" />
+            <Button layoutX="144.0" layoutY="514.0" mnemonicParsing="false" onAction="#ingresarComentario" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: lime;" text="Comentar" AnchorPane.leftAnchor="144.0" />
+            <TextField fx:id="commentTextField" layoutX="121.0" layoutY="482.0" style="-fx-border-color: #00c206;" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="130.0" />
             <ImageView fx:id="imageContainer1" fitHeight="29.0" fitWidth="30.0" layoutX="126.0" layoutY="431.0" onMouseClicked="#calificar" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageContainer2" fitHeight="29.0" fitWidth="30.0" layoutX="154.0" layoutY="431.0" onMouseClicked="#calificar" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageContainer3" fitHeight="29.0" fitWidth="30.0" layoutX="183.0" layoutY="431.0" onMouseClicked="#calificar" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageContainer4" fitHeight="29.0" fitWidth="30.0" layoutX="212.0" layoutY="431.0" onMouseClicked="#calificar" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageContainer5" fitHeight="29.0" fitWidth="30.0" layoutX="241.0" layoutY="431.0" onMouseClicked="#calificar" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#atras" style="-fx-border-color: #00c206;" text="Atras" textFill="#00c206" />
+            <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#atras" style="-fx-background-color: lime;" text="Atras" />
             <ScrollPane hbarPolicy="NEVER" layoutX="26.0" layoutY="275.0" prefHeight="150.0" prefWidth="348.0" vbarPolicy="ALWAYS">
                <content>
-                  <FlowPane fx:id="commentFlowPane" prefHeight="147.0" prefWidth="330.0" />
+                  <FlowPane fx:id="commentFlowPane" prefHeight="147.0" prefWidth="330.0" style="-fx-background-color: white;" />
                </content>
             </ScrollPane>
          </children>

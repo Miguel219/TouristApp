@@ -43,30 +43,37 @@ public class LoginInController {
 			try {
 				//Se guarda la informacion del usuario
 				ResultSet usuarioEnSesion = miUsuario.buscarUsuario(name,password);
-				Usuario userLoggedIn = new Usuario();
-				userLoggedIn.ingresarUsuario(usuarioEnSesion);
-				
-				//Se buscan los tags seguidos por el usuario
-				ResultSet tagsSeguidosPorUsuario = miUsuario.buscarTagsSeguidosPorUsuario(userLoggedIn.getUserId());
-				if(tagsSeguidosPorUsuario!=null) {
-					userLoggedIn.ingresarTags(tagsSeguidosPorUsuario);
-				}
-				
-				if (userLoggedIn.getAccountType() == 1) {
+				if(usuarioEnSesion != null) {
+					Usuario userLoggedIn = new Usuario();
+					userLoggedIn.ingresarUsuario(usuarioEnSesion);
 					
-					main = new Main();
-					main.changeToAdmin();
+					//Se buscan los tags seguidos por el usuario
+					ResultSet tagsSeguidosPorUsuario = miUsuario.buscarTagsSeguidosPorUsuario(userLoggedIn.getUserId());
+					if(tagsSeguidosPorUsuario!=null) {
+						userLoggedIn.ingresarTags(tagsSeguidosPorUsuario);
+					}
 					
-				}else if (userLoggedIn.getAccountType() == 2) {
+					if (userLoggedIn.getAccountType() == 1) {
+						
+						main = new Main();
+						main.changeToAdmin();
+						
+					}else if (userLoggedIn.getAccountType() == 2) {
+						
+						main = new Main();
+						main.changeToUserEdit(userLoggedIn);
+						
+					}
+				} else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Error al iniciar sesion");
+					alert.setContentText("Verifica que los datos esten correctos");
 					
-					main = new Main();
-					main.changeToUserEdit(userLoggedIn);
-					
+					alert.showAndWait();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-
-				e.printStackTrace();
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Error al iniciar sesion");

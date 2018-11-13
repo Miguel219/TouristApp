@@ -169,6 +169,7 @@ public class homePlacesController {
 				Button button = new Button();
 				button.setId(Integer.toString(placeId));
 				button.setText("Calificar");
+				button.setStyle("-fx-background-color: lime;");
 				button.setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override

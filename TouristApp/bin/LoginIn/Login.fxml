@@ -14,9 +14,9 @@
    <center>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="nameTextField" layoutX="92.0" layoutY="262.0" prefHeight="26.0" prefWidth="214.0" />
+            <TextField fx:id="nameTextField" layoutX="92.0" layoutY="262.0" prefHeight="26.0" prefWidth="214.0" style="-fx-border-color: #00c206;" />
             <Label layoutX="137.0" layoutY="301.0" text="Ingresa una contraseña" />
-            <PasswordField fx:id="passwordTextField" layoutX="91.0" layoutY="341.0" prefHeight="26.0" prefWidth="214.0" />
+            <PasswordField fx:id="passwordTextField" layoutX="91.0" layoutY="341.0" prefHeight="26.0" prefWidth="214.0" style="-fx-border-color: #00c206;" />
             <Label layoutX="149.0" layoutY="222.0" text="Ingresa Tu nombre" />
             <Button layoutX="155.0" layoutY="483.0" mnemonicParsing="false" onAction="#crearCuenta" style="-fx-background-color: lime;" text="Crear Cuenta" />
             <Label layoutX="81.0" layoutY="95.0" prefHeight="70.0" prefWidth="244.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="TouristApp">

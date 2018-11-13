@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewCommentPlaceController">
    <center>
-      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imageContainer" fitHeight="153.0" fitWidth="256.0" layoutX="71.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="51.0" layoutY="43.0" text="Comentar y Calificar Lugar" textFill="#00c206">
@@ -27,10 +27,10 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#atras" style="-fx-border-color: #00c206;" text="Atras" textFill="#00c206" />
+            <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#atras" style="-fx-background-color: lime;" text="Atras" />
             <ScrollPane hbarPolicy="NEVER" layoutX="26.0" layoutY="275.0" prefHeight="255.0" prefWidth="348.0" vbarPolicy="ALWAYS">
                <content>
-                  <FlowPane fx:id="commentFlowPane" prefHeight="251.0" prefWidth="330.0" />
+                  <FlowPane fx:id="commentFlowPane" prefHeight="251.0" style="-fx-background-color: white;" prefWidth="330.0" />
                </content>
             </ScrollPane>
          </children>
